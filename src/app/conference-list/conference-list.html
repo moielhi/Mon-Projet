@@ -1,0 +1,31 @@
+<p>conference-list works!</p>
+<section class="card card-conf">
+  <div class="card-icon">📅</div>
+
+  <div class="card-body">
+    <h2>Liste des conférences à venir</h2>
+    <p class="subtitle">Cliquez sur une conférence pour afficher ses détails.</p>
+
+    <input class="search" type="text"
+           placeholder="Taper le titre de la conférence"
+           (input)="onSearch($event)" />
+
+    <div class="conf-grid">
+      @for (c of filtered(); track c.id) {
+        <article class="conf-card">
+          <h3>{{ c.title }}</h3>
+          <p><strong>Date :</strong> {{ c.date }}</p>
+          <p><strong>Lieu :</strong> {{ c.location }}</p>
+          <p><strong>Places restantes :</strong> {{ c.seats }}</p>
+          <button [class]="'btn ' + seatClass(c)"
+                  [disabled]="c.seats === 0"
+                  (click)="register(c)">
+            S'inscrire
+          </button>
+        </article>
+      } @empty {
+        <p>Aucune conférence trouvée.</p>
+      }
+    </div>
+  </div>
+</section>

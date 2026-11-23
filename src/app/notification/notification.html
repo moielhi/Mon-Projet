@@ -1,0 +1,16 @@
+<section class="card card-notif">
+  <div class="card-icon">🔔</div>
+
+  <div class="card-body">
+    <h2>Zone de notifications</h2>
+    <p>Vous avez {{ notifications().length }} nouvelles notifications.</p>
+
+    <button (click)="show.set(!show())">Afficher les notifications</button>
+
+    @if (show()) {
+      @for (n of notifications(); track n.message) {
+        <div class="notif-item">{{ n.message }}</div>
+      }
+    }
+  </div>
+</section>
